@@ -1,0 +1,6 @@
+interface:
+  display_name: "Seedance 2.5 プロンプト"
+  short_description: "Seedance 2.5のプロンプトと日本語リップシンク表記を毎回整える"
+  default_prompt: "$seedance-25 を使って、映像の意図に合うSeedance 2.5用プロンプトを作成してください。"
+policy:
+  allow_implicit_invocation: true
