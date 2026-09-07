@@ -4,7 +4,7 @@ Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳�
 
 [Agent Skills](https://agentskills.io) 標準の `SKILL.md` 形式で書かれており、**OpenAI Codex、Claude Code、Google Antigravity、Gemini CLI、Cursor、GitHub Copilot、OpenCode** など、この形式に対応する生成AIエージェントで共通に使えます。特定のエージェント専用の記述は `SKILL.md` に含めていません。
 
-リポジトリ名は `seedance-25-japanese-prompt-skill`、**Skill名とインストール先のフォルダー名は `seedance-25`** です。DreaminaやByteDanceが提供する公式Skillではありません。
+リポジトリ名は `seedance-2.5-japanese-prompt-skill`、**Skill名とインストール先のフォルダー名は `seedance-25`** です。DreaminaやByteDanceが提供する公式Skillではありません。
 
 ## 特徴
 
@@ -58,7 +58,7 @@ Skillは `<skillsディレクトリ>/seedance-25/SKILL.md` の形で配置しま
 ターミナルで動く生成AIエージェント（Claude Code、OpenAI Codex、Gemini CLI、Cursor、GitHub Copilot、OpenCode など）のチャット欄に、次の文をそのまま貼り付けて送ります。
 
 ```text
-https://github.com/4n5AI/seedance-25-japanese-prompt-skill
+https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill
 上記のリポジトリのSkillをインストールしてください。READMEのインストール手順に従い、Skillのフォルダー名は seedance-25 にしてください。
 ```
 
@@ -73,8 +73,8 @@ https://github.com/4n5AI/seedance-25-japanese-prompt-skill
 このリポジトリをクローンし、その中の `install.sh` を実行します（どのディレクトリからでも実行できます。`--project` は実行時のカレントディレクトリ配下に配置します）。POSIX sh 互換で、`SKILL.md`・`references/`・`agents/` を `seedance-25` ディレクトリへコピーします。既に同名のSkillがある配置先は上書きせずスキップし、他の配置先には配置したうえで終了コード1で終了します（`--force` で置き換え）。
 
 ```sh
-git clone https://github.com/4n5AI/seedance-25-japanese-prompt-skill.git
-cd seedance-25-japanese-prompt-skill
+git clone https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill.git
+cd seedance-2.5-japanese-prompt-skill
 
 sh install.sh agents claude           # 使うエージェントを列挙する（共通ディレクトリ＋Claude Code）
 sh install.sh all                     # agents + claude + antigravity（重複なしで全エージェントをカバー）
@@ -102,17 +102,17 @@ sh install.sh all --list              # 配置先を表示するだけ
 skills ディレクトリの中へ、**フォルダー名を `seedance-25` にして**クローンします。`SKILL.md` がリポジトリ直下にあるため、これだけで完了です。
 
 ```sh
-git clone https://github.com/4n5AI/seedance-25-japanese-prompt-skill.git ~/.claude/skills/seedance-25   # Claude Code
-git clone https://github.com/4n5AI/seedance-25-japanese-prompt-skill.git ~/.agents/skills/seedance-25   # Codex・Gemini CLI・Copilot・OpenCode など
-git clone https://github.com/4n5AI/seedance-25-japanese-prompt-skill.git .agents/skills/seedance-25     # プロジェクト内で共有
+git clone https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill.git ~/.claude/skills/seedance-25   # Claude Code
+git clone https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill.git ~/.agents/skills/seedance-25   # Codex・Gemini CLI・Copilot・OpenCode など
+git clone https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill.git .agents/skills/seedance-25     # プロジェクト内で共有
 ```
 
 ### D. 各エージェントのインストール機能を使う
 
-- **Codex**：同梱の `$skill-installer` はリポジトリ内のサブディレクトリを `--path` で指定する前提のため、このリポジトリのURLだけを渡すと「Missing --path for GitHub URL.」で失敗します。`SKILL.md` がリポジトリ直下にあるこのリポジトリでは、「`$skill-installer` で `--repo 4n5AI/seedance-25-japanese-prompt-skill --path . --name seedance-25` を指定してインストールして」のようにパスと名前を明示してください（`${CODEX_HOME:-~/.codex}/skills/seedance-25` に入ります）。確実に配置したい場合は B または C を使ってください。
-- **Gemini CLI**：`gemini skills install https://github.com/4n5AI/seedance-25-japanese-prompt-skill`（`--scope user|workspace`）。
+- **Codex**：同梱の `$skill-installer` はリポジトリ内のサブディレクトリを `--path` で指定する前提のため、このリポジトリのURLだけを渡すと「Missing --path for GitHub URL.」で失敗します。`SKILL.md` がリポジトリ直下にあるこのリポジトリでは、「`$skill-installer` で `--repo 4n5AI/seedance-2.5-japanese-prompt-skill --path . --name seedance-25` を指定してインストールして」のようにパスと名前を明示してください（`${CODEX_HOME:-~/.codex}/skills/seedance-25` に入ります）。確実に配置したい場合は B または C を使ってください。
+- **Gemini CLI**：`gemini skills install https://github.com/4n5AI/seedance-2.5-japanese-prompt-skill`（`--scope user|workspace`）。
 - **GitHub Copilot**：`~/.copilot/skills/seedance-25`（または `.github/skills/seedance-25`）へコピーします（B の `copilot`、または C）。`copilot skill add <ディレクトリ>` はそのディレクトリを skills の格納場所として登録する動作のため、このリポジトリのディレクトリを直接指定しないでください。
-- **skills CLI（サードパーティ）**：`npx skills add 4n5AI/seedance-25-japanese-prompt-skill`（ユーザー全体は `-g`、コピーは `--copy`）。検出したエージェントへまとめて配置しますが、Vercel Labsが提供する非公式ツールで、利用統計を送信します。使用前に内容を確認してください。
+- **skills CLI（サードパーティ）**：`npx skills add 4n5AI/seedance-2.5-japanese-prompt-skill`（ユーザー全体は `-g`、コピーは `--copy`）。検出したエージェントへまとめて配置しますが、Vercel Labsが提供する非公式ツールで、利用統計を送信します。使用前に内容を確認してください。
 
 Windowsでは、`SKILL.md`・`references/`・`agents/` を含むフォルダーを `seedance-25` の名前で同じ配置先（`%USERPROFILE%\.claude\skills\` など）へコピーしてください。
 
