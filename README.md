@@ -1,6 +1,6 @@
 # Seedance 2.5 Japanese Prompt Skill
 
-Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**42種類のシネマトグラフィー（カメラワーク）ガイド**を収録しています。
+Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**シネマトグラフィー（カメラワーク・ショットサイズ・レンズ・構図・ライティング）のリファレンス**を収録しています。
 
 [Agent Skills](https://agentskills.io) 標準の `SKILL.md` 形式で書かれており、**OpenAI Codex、Claude Code、Google Antigravity、Gemini CLI、Cursor、GitHub Copilot、OpenCode** など、この形式に対応する生成AIエージェントで共通に使えます。特定のエージェント専用の記述は `SKILL.md` に含めていません。
 
@@ -16,18 +16,29 @@ Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳�
 
 これらは、発話時の読み間違い・不自然な発音を防ぐための最適化ルールです。発話部分に適用し、参照タグ（`@Image1`等）、URL、ファイル名、話さない画面上の文字は改変しません。
 
-### 2. シネマトグラフィー・カメラワーク（42選）を収録
+### 2. シネマトグラフィーのリファレンスを収録
 
-AI動画モデル（Seedance 2.5含む）が確実にカメラを認識できるよう、国際標準の映画用語（英語キーワード）＋日本語補足のハイブリッド形式を採用しています。
+国際標準の映画用語（英語キーワード）＋日本語補足のハイブリッド形式で、撮影の意図を言語化します。必要な項目だけを読み込む構成です。
 
-- **Dolly & Track（前後移動・並走）**: Slow/Fast Dolly In/Out, Leading/Following Shot, Side Tracking, Worm's Eye Tracking
-- **Zoom & Lens（光学ズーム・レンズ）**: Optical Zoom, Snap Zoom, Vertigo Effect (Zolly), Extreme Macro Zoom, Fisheye
-- **Pan, Tilt & Truck（パン・チルト・横移動）**: Tilt Up/Down, Truck Left/Right, Whip Pan, Dutch Angle, Over the Shoulder
-- **Orbit & Rotation（旋回・回転）**: Orbit 180/360, Slow Cinematic Arc, Barrel Roll, Bullet Time
-- **Drone & Crane（ドローン・クレーン・高低差）**: Pedestal Up/Down, Crane Up/Down, Drone Fly Over, Epic Drone Reveal, Top Down, FPV Drone Dive
-- **POV, Focus & Transition（視点・フォーカス）**: POV Walk, Handheld Documentary, Rack Focus, Reveal from Blur, Hyperlapse
+| リファレンス | 内容 |
+|---|---|
+| [`camera-movements.md`](references/camera-movements.md) | カメラの動き42種（Dolly・Zoom・Pan/Tilt・Orbit・Drone/Crane・POV/Focus） |
+| [`shot-composition.md`](references/shot-composition.md) | ショットサイズ（ELS〜ECU）、アングルと高さ、構図11種 |
+| [`lens-and-focus.md`](references/lens-and-focus.md) | 焦点距離と画角の早見表、被写界深度、アナモルフィック・ヴィンテージのルック |
+| [`lighting-color.md`](references/lighting-color.md) | 三点照明とライティングパターン、光の質、時間帯、色温度、カラーグレード |
+| [`multi-shot-continuity.md`](references/multi-shot-continuity.md) | 複数ショットの連続性、編集文法、絵コンテとの対応 |
+| [`prompt-syntax.md`](references/prompt-syntax.md) | Seedance 2.5固有の記法（音声・字幕の括弧、時間指定の制約、参照素材の束縛） |
 
-詳細は [`references/camera-movements.md`](references/camera-movements.md) をご覧ください。
+### 3. 日本語の現場用語を国際標準の英語へ変換
+
+日本の映像現場の用語は、英語圏の用語と意味がずれるものがあります。そのまま英訳すると意図と違う映像になるため、対応表で変換します。
+
+| 日本語 | プロンプトに書く英語 | 誤訳すると |
+|---|---|---|
+| トラックアップ／T.U | `dolly in` | 英語の `truck` は**横移動**なので、前進しない |
+| ズームアップ | `zoom in` | `zoom up` は和製英語（英語では「急上昇」） |
+| パンアップ | `tilt up` | 英語の `pan` は**水平方向のみ** |
+| `WS`（ウエストショット＝腰上） | `waist-up medium shot` | 英語の `WS` は Wide Shot（引き）で**意味が反転** |
 
 ## 対応エージェントと配置先
 
@@ -159,24 +170,39 @@ Skill本文はインストール先の skills/seedance-25/SKILL.md にある。
 ## 内容と出典
 
 - [`SKILL.md`](SKILL.md)：プロンプトの作成手順とセリフの表記ルール。frontmatterは Agent Skills 仕様のフィールド（`name`・`description`・`metadata`）のみを使用
-- [`references/camera-movements.md`](references/camera-movements.md)：42種類のシネマトグラフィー・カメラワークガイド（英語構文、演出意図、記述例）
-- [`references/source-guide.md`](references/source-guide.md)：出典、設定、モード別条件
+- [`references/prompt-syntax.md`](references/prompt-syntax.md)：Seedance 2.5固有の記法（音声・字幕の括弧、時間指定の制約、参照素材の束縛、ネガティブ指定）
+- [`references/camera-movements.md`](references/camera-movements.md)：カメラワーク42種と日本語現場用語の対応表
+- [`references/shot-composition.md`](references/shot-composition.md)：ショットサイズ、アングルと高さ、構図
+- [`references/lens-and-focus.md`](references/lens-and-focus.md)：焦点距離と画角、被写界深度、レンズのルック
+- [`references/lighting-color.md`](references/lighting-color.md)：ライティング、時間帯、色温度、カラーグレード
+- [`references/multi-shot-continuity.md`](references/multi-shot-continuity.md)：複数ショットの連続性、編集文法、絵コンテとの対応
+- [`references/source-guide.md`](references/source-guide.md)：出典、設定、モード別条件、確度の区分
 - [`agents/openai.yaml`](agents/openai.yaml)：Codex向けの表示・呼び出し設定（任意。Codex以外のエージェントは無視します）
 - [`install.sh`](install.sh)：各エージェントの skills ディレクトリへ配置するスクリプト
 - [`LICENSE`](LICENSE)：MIT License
 
-資料確認日：**2026-09-07**。次の4資料を基に要点を整理しています。
+### 出典
+
+Seedance公式資料（確認日：**2026-09-07**、本文取得済み）。
 
 - [Dreamina プロンプトガイド](https://dreamina.capcut.com/ja-jp/seedance/seedance-2-5-prompt)
 - [Dreamina ベスト設定](https://dreamina.capcut.com/ja-jp/seedance/seedance-2-5-best-settings)
 - [ByteDance / Dreamina Seedance 2.5 User Guide](https://bytedance.larkoffice.com/wiki/NjnWwvf4BiFYFLk2RzrcEgaunGf)
-- [AI Shot Studio: 42 Camera Movements for AI Video Prompts](https://aishotstudio.com/42-camera-movements-ai-prompts/)
+
+シネマトグラフィー資料（確認日：**2026-09-08**）。
+
+- [AI Shot Studio: 42 Camera Movements for AI Video Prompts](https://aishotstudio.com/42-camera-movements-ai-prompts/)（本文取得済み）
+- [4n5AI/CinematographyStoryboards](https://github.com/4n5AI/CinematographyStoryboards)（7軸66用語の体系。リポジトリから取得済み）
+
+このほか、焦点距離・画角・シネマレンズ・カメラワーク・構図の各分野について参照先の指定がありましたが、作成環境のネットワーク制限で本文を取得できませんでした。該当分野の記述は検索結果と到達できた一次情報源（メーカーやレンタル各社の技術資料、物理の公式、公開されている用語集）から再構成しており、指定ページからの逐語ではありません。取得状況の一覧は [出典ガイド](references/source-guide.md) にあります。
+
+**確度の扱い**：Skillの各記述には確度を付けています。公式資料で本文を確認したもの、複数の第三者情報源が一致するもの、裏付けが弱いものを区別し、公式で未確認の事項をユーザーへ断定して伝えない方針です。シネマトグラフィーの知識は一般的な撮影知識であり、Seedanceの公式資料には含まれません。「どの語彙がAI動画モデルに効くか」の記述は第三者の検証報告に基づき、その多くは他モデルでの検証です。
 
 資料上の通常生成は4〜30秒、Long Videoは専用モードで30〜180秒と区別されています。利用可能なモードや設定はサービス・提供時期によって確認が必要です。Dreaminaの説明を他サービスやAPIへそのまま適用せず、変更され得る仕様は現行の公式情報または利用画面で確認します。詳細は出典ガイドを参照してください。
 
 ## ライセンス
 
-[MIT License](LICENSE) です。個人・商用を問わず、誰でも無料で自由に使用・複製・改変・再配布できます。条件は、著作権表示とライセンス文を残すことだけです。ライセンスの対象はこのリポジトリに含まれるファイルであり、「内容と出典」に挙げた外部資料（Dreamina、ByteDance、AI Shot Studio）の権利は各提供元に帰属します。
+[MIT License](LICENSE) です。個人・商用を問わず、誰でも無料で自由に使用・複製・改変・再配布できます。条件は、著作権表示とライセンス文を残すことだけです。ライセンスの対象はこのリポジトリに含まれるファイルであり、「出典」に挙げた外部資料（Dreamina、ByteDance、AI Shot Studio ほか）の権利は各提供元に帰属します。
 
 ## 既知の注意点
 

@@ -2,9 +2,36 @@
 
 出典：[AI Shot Studio: 42 Camera Movements for AI Video Prompts](https://aishotstudio.com/42-camera-movements-ai-prompts/)（2026-01-30更新）。
 
-Seedance 2.5を含む動画生成AIモデルにおいて、カメラの動きを日本語だけで「カメラが前に進む」と指示するよりも、**国際標準の映画用語（英語）＋対象や意図の日本語補足**というハイブリッド形式で記述することで、カメラ制御の精度が飛躍的に向上します。
+カメラの動きを日本語だけで「カメラが前に進む」と指示するよりも、**国際標準の映画用語（英語）＋対象や意図の日本語補足**というハイブリッド形式で記述するほうが、意図が正確に伝わります。
 
-本書は、AI動画プロンプトで実証された42種類（全44パターン）のカメラワークを6大カテゴリに分類し、プロンプトへの組み込み構文と演出意図を整理したものです。
+本書は、AI動画プロンプト向けに整理された42種類（全44パターン）のカメラワークを6大カテゴリに分類し、プロンプトへの組み込み構文と演出意図をまとめたものです。関連する参照：ショットサイズ・アングル・構図は [shot-composition.md](shot-composition.md)、レンズと被写界深度は [lens-and-focus.md](lens-and-focus.md)、光と色は [lighting-color.md](lighting-color.md)、複数ショットの連続性は [multi-shot-continuity.md](multi-shot-continuity.md)、Seedance 2.5 固有の記法は [prompt-syntax.md](prompt-syntax.md)。
+
+---
+
+## 0. 日本語の現場用語 → 英語キーワード 対応表（誤訳防止・最重要）
+
+**日本語の現場語をそのまま英訳すると、英語では別の動きを指す語になる。** 公式ガイドはカメラ用語を英語のまま列挙していると解説されるため（確度【第三者】）、用語は英語の綴りへそろえる。ユーザーが左列の語を使ったら、必ず中列の英語へ変換してからプロンプトへ書く。
+
+| ユーザーが言う日本語 | プロンプトに書く英語 | 書いてはいけない英語 |
+|---|---|---|
+| トラックアップ／T.U／寄る（カメラが前進） | `dolly in` / `push in` | `track up`, `truck in`, `zoom in` |
+| トラックバック／T.B／引く（カメラが後退） | `dolly out` / `pull out` | `track back`, `truck out`, `zoom out` |
+| トラック（左右に平行移動） | `truck left` / `truck right` | `track left`（曖昧） |
+| トラック（被写体を追う） | `tracking shot, camera follows the subject` | `truck` |
+| ズームアップ | `zoom in` | **`zoom up`**（和製英語。英語では「急上昇」の意） |
+| パンアップ／パンダウン | `tilt up` / `tilt down` | `pan up`, `pan down` |
+| カメラを上げる（高さを変える） | `pedestal up`（小範囲）／`crane up`・`boom up`（大範囲） | `move up`（曖昧） |
+| 傾ける（静止した斜め構図） | `dutch angle, tilted horizon` | `roll`（動きになる） |
+| 傾ける（回転する動き） | `camera roll` / `barrel roll` | `dutch angle` |
+| 主観／一人称（本人の身体は写らない） | `POV shot, first person` | `over-the-shoulder` |
+| 肩越し（手前の肩が写る） | `over-the-shoulder shot` | `POV` |
+
+**特に注意すべき2点。**
+
+- **「トラックアップ／トラックバック」は日本の映像・アニメ業界で dolly in / dolly out の意味で定着している一方、英語の `truck` は「横移動」を指す。** ここを取り違えると出力が横移動になる。さらにアニメの現場では T.U が「画の2D拡大」を指すこともあるため、**空間移動（dolly）なのか画の拡大（zoom）なのかを必ず確定させる。**
+- **「寄る」「近づく」だけでは、レンズ操作（zoom）か本体移動（dolly）か決まらない。** ズームはカメラ位置が変わらないため平面的な拡大に見え、ドリーは空間の奥行きが変化する。どちらの意図かをユーザーに確認するか、合理的な仮定を短く示す。
+
+英語表記は「語彙を一致させる手段」であり、**日本語部分を英語へ置き換える必要はない。プロンプト全体は日本語で書いてよい。** 詳細は [prompt-syntax.md](prompt-syntax.md) の該当節を参照。
 
 ---
 
@@ -12,11 +39,17 @@ Seedance 2.5を含む動画生成AIモデルにおいて、カメラの動きを
 
 1. **英語キーワード＋日本語補足のハイブリッド**:
    - 例：`Slow dolly in。カメラが被写体の正面に向かってゆっくり前進し、表情に寄る。`
-   - AIの内部エンコーダーは英語の映画用語（Dolly in, Pan, Tilt, Orbit等）に強く反応するため、用語を英語で指定し、対象・速度・構図のニュアンスを日本語で補強するのが最も確実です。
+   - 公式ガイドはカメラ用語を英語のまま（翻訳不要と明記して）列挙していると解説されており、英語表記＋日本語補足はその語彙と整合します。ただし「英語で書くと認識精度が飛躍的に上がる」という主張は Seedance 2.5 について検証された記述が見つかっていません。
 2. **1ショット＝1主要カメラアクションの原則**:
-   - 1つのショット（4〜10秒程度）に「急激なズーム」「旋回」「チルト」を同時に詰め込むと、被写体の崩れや空間の歪み（モーフィング）が発生しやすくなります。1ショットにつき主たるカメラの動きは1〜2つに絞ります。
+   - 1つのショット（4〜10秒程度）に「急激なズーム」「旋回」「チルト」を同時に詰め込むと、被写体の崩れや空間の歪み（モーフィング）が発生しやすくなります。1ショットにつき主たるカメラの動きは1〜2つに絞ります。複数のカメラワークを1区間に指定すると、指示自体が無視されることもあります。
 3. **被写体の運動とカメラの相対関係**:
    - 被写体が動いている場合、「カメラが被写体を正面から追いかける（Following）」のか「並走する（Tracking）」のか「カメラは静止して被写体が通り過ぎる（Static）」のかを明示します。
+4. **速度語を必ず添える**:
+   - `slowly` / `smoothly` / `gradually`（速い場合は `rapidly` / `fast`）を入れます。速度を書かないと想定より速く動き、被写体が崩れます。**原則は「ゆっくり」。**
+5. **動きに意図を持たせる**:
+   - 被写体の動作を追う動き（motivated）は自然に見え、観客は動き自体を意識しません。静止した被写体に寄る動き（unmotivated）は観客が動きに気づくため、意図的な演出として使います。どちらでもよいのですが、**無目的な動きは「何を見せたいのか」を不明にします。**
+6. **止める選択も持つ**:
+   - 画面が固定されていると、動いているものへ視線が集中します。表情・細かい所作・決定的な瞬間は `static shot`（固定）が最も強いことがあります。カメラを動かすことを目的にしません。
 
 ---
 
@@ -58,12 +91,12 @@ Seedance 2.5を含む動画生成AIモデルにおいて、カメラの動きを
 
 | カメラワーク | 英語プロンプト構文 | 演出意図・活用シーン | Seedance 2.5プロンプト記述例 |
 |---|---|---|---|
-| **Tilt Up**<br>（チルトアップ） | `Tilt up, camera pans vertically up from bottom to top.` | 足元から全身・顔への視線移動、巨大建築や怪獣の威容、希望の上昇。 | `カメラ：Tilt up。足元の石畳からゆっくりとレンズを上へ向け、そびえ立つ古城の尖塔と青空を仰ぎ見る。` |
-| **Tilt Down**<br>（チルトダウン） | `Tilt down, camera pans vertically down from top to bottom.` | 空から地上へ、落胆、崩壊、見下ろす視線、物語の開始（街の俯瞰から通りへ）。 | `カメラ：Tilt down。薄暮の曇り空からゆっくり見下ろし、雨で濡れた交差点を行き交う傘の波へパンダウンする。` |
-| **Truck Left**<br>（トラックレフト / 左横移動） | `Truck left, camera moves sideways on a track to the left.` | 被写体と直交する横方向への移動。横スクロール的な情景描写、群衆の横断。 | `カメラ：Truck left。書架の前に立つ人物を横に見ながら、カメラが左方向へ滑らかにスライド移動する。` |
+| **Tilt Up**<br>（チルトアップ） | `Tilt up, camera pivots vertically upward from bottom to top.` | 足元から全身・顔への視線移動、巨大建築や怪獣の威容、希望の上昇。 | `カメラ：Tilt up。足元の石畳からゆっくりとレンズを上へ向け、そびえ立つ古城の尖塔と青空を仰ぎ見る。` |
+| **Tilt Down**<br>（チルトダウン） | `Tilt down, camera pivots vertically downward from top to bottom.` | 空から地上へ、落胆、崩壊、見下ろす視線、物語の開始（街の俯瞰から通りへ）。 | `カメラ：Tilt down。薄暮の曇り空からゆっくり見下ろし、雨で濡れた交差点を行き交う傘の波へパンダウンする。` |
+| **Truck Left**<br>（トラックレフト / 左横移動）※日本語の「トラックアップ／バック」は前後移動を指す別語 | `Truck left, camera moves sideways on a track to the left.` | 被写体と直交する横方向への移動。横スクロール的な情景描写、群衆の横断。 | `カメラ：Truck left。書架の前に立つ人物を横に見ながら、カメラが左方向へ滑らかにスライド移動する。` |
 | **Truck Right**<br>（トラックライト / 右横移動） | `Truck right, camera moves sideways on a track to the right.` | 物語の進行、時間の経過、パノラマ的な空間の開示。 | `カメラ：Truck right。実験室の作業台に並ぶ機材の列を右へ横移動しながら、奥で作業する研究者を捉える。` |
 | **Whip Pan**<br>（ホイップパン / 高速パン） | `Whip pan, camera whips violently to the side with extreme directional motion blur.` | 激しい場面転換、予期せぬ闖入者への素早い振り向き、アクションの勢い。 | `カメラ：Whip pan。激しいモーションブラーを伴ってカメラが右へ高速で振り向き、爆発の煙を瞬時に捉える。` |
-| **Dutch Angle (Roll)**<br>（ダッチアングル / 斜角） | `Dutch angle, camera roll, tilted sideways on Z-axis.` | 不穏、精神的不安定、混沌、悪役の登場、危険な事態。 | `カメラ：Dutch angle。カメラがZ軸に約25度傾いた斜めの構図で、薄暗い路地に佇む不気味な人物を捉える。` |
+| **Dutch Angle**<br>（ダッチアングル / 斜角・静止構図）※回転する動きは Barrel Roll | `Dutch angle, tilted horizon, static frame canted about 25 degrees on the Z-axis.` | 不穏、精神的不安定、混沌、悪役の登場、危険な事態。 | `カメラ：Dutch angle。カメラがZ軸に約25度傾いた斜めの構図で、薄暗い路地に佇む不気味な人物を捉える。` |
 | **Over the Shoulder (OTS)**<br>（肩越しショット） | `Over the shoulder shot, camera mounted behind subject A framing subject B.` | 2者間の対話、対峙、視線の交錯、客観と主観の中間。 | `カメラ：Over the shoulder shot。手前の人物の肩と後頭部をボケ味でフレームに入れ、向かい合って話す相手の表情を映す。` |
 
 ---
@@ -107,7 +140,7 @@ Seedance 2.5を含む動画生成AIモデルにおいて、カメラの動きを
 | カメラワーク | 英語プロンプト構文 | 演出意図・活用シーン | Seedance 2.5プロンプト記述例 |
 |---|---|---|---|
 | **POV Walk**<br>（主観歩行 / 一人称視点） | `POV walk, first person camera moving forward with bobbing motion.` | 体験の追体験、探索、ホラーゲーム風の没入、未知の扉を開ける緊張感。 | `カメラ：POV walk。人物の目線（一人称視点）で、歩行に伴う自然な揺れを伴いながら薄暗い洋館の廊下を前進する。` |
-| **Handheld Documentary**<br>（手持ちドキュメンタリー風） | `Handheld camera, shaky motion, natural movement, documentary style.` | 生々しいリアリティ、現場感、ニュース取材風、即時性、生配信風。 | `カメラ：Handheld camera。手持ちカメラ特有の微小な手振れと自然なリフォーカスを伴い、厨房で調理するシェフの動きを追う。` |
+| **Handheld Documentary**<br>（手持ちドキュメンタリー風） | `Handheld camera, subtle natural micro-movement, documentary style.` | 生々しいリアリティ、現場感、ニュース取材風、即時性、生配信風。 | `カメラ：Handheld camera。手持ちカメラ特有の微小な手振れと自然なリフォーカスを伴い、厨房で調理するシェフの動きを追う。` |
 | **Reveal from Behind (Wipe)**<br>（障害物越しのリビール） | `Wipe movement, camera slides laterally from behind foreground object to reveal the scene.` | 木や柱、壁の後ろからスライドして奥の景色や人物をドラマチックに見せる。 | `カメラ：Reveal from behind。手前にある巨大な木の幹の背後からカメラが右へスライドし、木陰の向こうで佇む人物を露わにする。` |
 | **Fly Through**<br>（スルーショット / 貫通通過） | `Fly through, camera moves through an opening into the scene.` | 鍵穴、窓ガラス、フェンスの隙間、トンネルを通り抜けて別世界へ入る。 | `カメラ：Fly through。アンティーク調の窓枠の隙間をすり抜けるようにカメラが屋外から室内へスムーズに進入する。` |
 | **Rack Focus**<br>（ラックフォーカス / ピント送り） | `Rack focus, focus shifts from the foreground object to the background subject.` | 視線誘導。手前の小道具（グラス、手紙など）から奥の人物へピントを切り替える。 | `カメラ：Rack focus。手前の雨粒がついた窓ガラスに合っていたピントが、ゆっくりと奥の通りを歩く人物へと移動して鮮明になる。` |
@@ -119,15 +152,26 @@ Seedance 2.5を含む動画生成AIモデルにおいて、カメラの動きを
 ## Seedance 2.5でのカメラ指示の組み合わせテクニック
 
 ### 1. 「カメラの高さ」と「アングル」の明示
-- 視線の高さ：`Eye level`（目線）、`High angle`（見下ろし）、`Low angle`（見上げ）、`Ground level`（地面）
-- 距離感：`Extreme close-up`（超接写）、`Close-up`（顔の寄り）、`Medium shot`（腰上）、`Full body shot`（全身）、`Wide shot`（全景）
+高さ（ポジション）と角度（アングル）は別概念なので、2語で分けて書きます。距離感（ショットサイズ）とあわせた一覧は [shot-composition.md](shot-composition.md) を参照してください。
+
+- 高さと角度：`Eye level`（目線）、`High angle`（見下ろし）、`Low angle`（見上げ）、`Ground level`（地面すれすれ）、`Top-down`（真俯瞰）
+- 距離感：`Extreme close-up`（超接写）、`Close-up`（顔の寄り）、`Medium close-up`（胸上）、`Medium shot`（腰上）、`Full shot`（全身）、`Wide shot`（全景）
+- **日本の現場略号（WS＝ウエストショット、BS、US、FF、D）はプロンプトに書きません。** `WS` は英語では Wide Shot（引き）で意味が反転します。詳細は [shot-composition.md](shot-composition.md) の対応表を参照。
 
 ### 2. 時間指定（秒数）とカメラワークの接続
-複数秒にわたるショットの場合、時間ごとにカメラの動きを定義します。
+複数秒にわたるショットの場合、時間ごとにカメラの動きを定義します。実撮影と同じく **「静 → 動 → 静」の三段構成**にすると読み取りやすくなります（モデル側の安定性は未確認）。
+
 - `0〜3秒: Static camera（固定）で人物の静止した表情を捉える。`
-- `3〜8秒: Slow dolly in（ゆっくり前進）を開始し、人物の瞳のアップへ寄る。`
-- `8〜10秒: Rack focusで背景のドアを開ける人物へピントを送る。`
+- `3〜7秒: Slow dolly in（ゆっくり前進）を開始し、人物の瞳のアップへ寄る。`
+- `7〜10秒: Rack focusで背景のドアを開ける人物へピントを送り、動きを止める。`
+
+整数秒・隙間なし・1区間3秒以上といった時間指定の制約は [prompt-syntax.md](prompt-syntax.md) を参照してください。
 
 ### 3. 禁止・注意事項
-- **急激な方向転換の連続**: 「右にパンした直後に左へホイップパンし、急降下する」といった物理的に無理な複合指示はAIモデルの空間認識を壊します。
-- **ワンカット（連続撮影）とカット割り（シーン切り替え）の混同**: ワンカットを意図する場合は「連続したカメラワーク（Continuous shot）」と明記し、カットが自動挿入されないよう制約します。
+- **1区間1主要カメラアクション**: 複数のカメラワークを1区間に指定すると、指示が無視されるか破綻します。動きは1つ、多くても方向が矛盾しない2つまでに絞ります。
+- **急激な方向転換の連続**: 「右にパンした直後に左へホイップパンし、急降下する」といった物理的に無理な複合指示はモデルの空間認識を壊します。
+- **矛盾する指示を重ねない**: `handheld`（手持ち）と `locked steady`（固定）を同時に指定しません。
+- **速度語を省かない**: `slowly` / `smoothly` / `gradually` を添えます。原則は「ゆっくり」。
+- **揺れは弱く限定する**: `shaky` や `violent handheld` を強く指定すると被写体の形状が崩れます。`subtle handheld, natural micro-movement` のように量を限定します。
+- **ワンカット（連続撮影）とカット割り（シーン切り替え）の混同**: ワンカットを意図する場合は **`one-take shot`**（モデルが解釈する語彙として挙げられている／確度【第三者】）と明記し、`continuous shot` / `no cuts` を添えてカットが自動挿入されないよう制約します。
+- **複数ショットを出すとき**: 隣接ショットのサイズと角度を変え、人物の外見・画面上の左右の立ち位置・光源の方向を各ショットで反復します。詳細は [multi-shot-continuity.md](multi-shot-continuity.md) を参照。
