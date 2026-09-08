@@ -32,7 +32,7 @@
 | 指定資料 | 分野 | 取得状況 |
 |---|---|---|
 | [4n5AI/CinematographyStoryboards（公開サイト）](https://4n5ai.github.io/CinematographyStoryboards/) | 用語体系全般 | サイトは未取得。同じ内容をリポジトリから取得済み |
-| [システムケイ 焦点距離と画角](https://systemk-camera.jp/camera-blog/knowledge/what-focallength-fieldangle.php) | 焦点距離・画角 | 未取得。画角表は公式から自前で計算し検証 |
+| [システムケイ 焦点距離と画角](https://systemk-camera.jp/camera-blog/knowledge/what-focallength-fieldangle.php) | 焦点距離・画角 | 未取得。画角表は計算式から自前で算出し検証 |
 | [K.OFFICE シネマレンズ](https://k-office.pro/2025/06/16/cinema-lens/) | シネマレンズ | 未取得。T値・ブリージング等は他の技術資料で確認 |
 | [Morphic Seedance 2.5ガイド](https://morphic.com/jp/resources/how-to/seedance-2-5-guide) | 2.5のプロンプト仕様 | 未取得。時間指定の方針などは検索結果で複数ソースを突合 |
 | [ジャムデザイン カメラワーク](https://jamdesign.co.jp/staffblog/202211cameraworks20221104/) | カメラワーク | 未取得 |

@@ -10,7 +10,7 @@
 
 ## 0. 日本語の現場用語 → 英語キーワード 対応表（誤訳防止・最重要）
 
-**モデルは英語の単語に反応する。日本語の現場語をそのまま英訳すると別の動きが出力される。** ユーザーが左列の語を使ったら、必ず中列の英語へ変換してからプロンプトへ書く。
+**日本語の現場語をそのまま英訳すると、英語では別の動きを指す語になる。** 公式ガイドはカメラ用語を英語のまま列挙していると解説されるため（確度【第三者】）、用語は英語の綴りへそろえる。ユーザーが左列の語を使ったら、必ず中列の英語へ変換してからプロンプトへ書く。
 
 | ユーザーが言う日本語 | プロンプトに書く英語 | 書いてはいけない英語 |
 |---|---|---|
@@ -96,7 +96,7 @@
 | **Truck Left**<br>（トラックレフト / 左横移動）※日本語の「トラックアップ／バック」は前後移動を指す別語 | `Truck left, camera moves sideways on a track to the left.` | 被写体と直交する横方向への移動。横スクロール的な情景描写、群衆の横断。 | `カメラ：Truck left。書架の前に立つ人物を横に見ながら、カメラが左方向へ滑らかにスライド移動する。` |
 | **Truck Right**<br>（トラックライト / 右横移動） | `Truck right, camera moves sideways on a track to the right.` | 物語の進行、時間の経過、パノラマ的な空間の開示。 | `カメラ：Truck right。実験室の作業台に並ぶ機材の列を右へ横移動しながら、奥で作業する研究者を捉える。` |
 | **Whip Pan**<br>（ホイップパン / 高速パン） | `Whip pan, camera whips violently to the side with extreme directional motion blur.` | 激しい場面転換、予期せぬ闖入者への素早い振り向き、アクションの勢い。 | `カメラ：Whip pan。激しいモーションブラーを伴ってカメラが右へ高速で振り向き、爆発の煙を瞬時に捉える。` |
-| **Dutch Angle (Roll)**<br>（ダッチアングル / 斜角） | `Dutch angle, camera roll, tilted sideways on Z-axis.` | 不穏、精神的不安定、混沌、悪役の登場、危険な事態。 | `カメラ：Dutch angle。カメラがZ軸に約25度傾いた斜めの構図で、薄暗い路地に佇む不気味な人物を捉える。` |
+| **Dutch Angle**<br>（ダッチアングル / 斜角・静止構図）※回転する動きは Barrel Roll | `Dutch angle, tilted horizon, static frame canted about 25 degrees on the Z-axis.` | 不穏、精神的不安定、混沌、悪役の登場、危険な事態。 | `カメラ：Dutch angle。カメラがZ軸に約25度傾いた斜めの構図で、薄暗い路地に佇む不気味な人物を捉える。` |
 | **Over the Shoulder (OTS)**<br>（肩越しショット） | `Over the shoulder shot, camera mounted behind subject A framing subject B.` | 2者間の対話、対峙、視線の交錯、客観と主観の中間。 | `カメラ：Over the shoulder shot。手前の人物の肩と後頭部をボケ味でフレームに入れ、向かい合って話す相手の表情を映す。` |
 
 ---
@@ -140,7 +140,7 @@
 | カメラワーク | 英語プロンプト構文 | 演出意図・活用シーン | Seedance 2.5プロンプト記述例 |
 |---|---|---|---|
 | **POV Walk**<br>（主観歩行 / 一人称視点） | `POV walk, first person camera moving forward with bobbing motion.` | 体験の追体験、探索、ホラーゲーム風の没入、未知の扉を開ける緊張感。 | `カメラ：POV walk。人物の目線（一人称視点）で、歩行に伴う自然な揺れを伴いながら薄暗い洋館の廊下を前進する。` |
-| **Handheld Documentary**<br>（手持ちドキュメンタリー風） | `Handheld camera, shaky motion, natural movement, documentary style.` | 生々しいリアリティ、現場感、ニュース取材風、即時性、生配信風。 | `カメラ：Handheld camera。手持ちカメラ特有の微小な手振れと自然なリフォーカスを伴い、厨房で調理するシェフの動きを追う。` |
+| **Handheld Documentary**<br>（手持ちドキュメンタリー風） | `Handheld camera, subtle natural micro-movement, documentary style.` | 生々しいリアリティ、現場感、ニュース取材風、即時性、生配信風。 | `カメラ：Handheld camera。手持ちカメラ特有の微小な手振れと自然なリフォーカスを伴い、厨房で調理するシェフの動きを追う。` |
 | **Reveal from Behind (Wipe)**<br>（障害物越しのリビール） | `Wipe movement, camera slides laterally from behind foreground object to reveal the scene.` | 木や柱、壁の後ろからスライドして奥の景色や人物をドラマチックに見せる。 | `カメラ：Reveal from behind。手前にある巨大な木の幹の背後からカメラが右へスライドし、木陰の向こうで佇む人物を露わにする。` |
 | **Fly Through**<br>（スルーショット / 貫通通過） | `Fly through, camera moves through an opening into the scene.` | 鍵穴、窓ガラス、フェンスの隙間、トンネルを通り抜けて別世界へ入る。 | `カメラ：Fly through。アンティーク調の窓枠の隙間をすり抜けるようにカメラが屋外から室内へスムーズに進入する。` |
 | **Rack Focus**<br>（ラックフォーカス / ピント送り） | `Rack focus, focus shifts from the foreground object to the background subject.` | 視線誘導。手前の小道具（グラス、手紙など）から奥の人物へピントを切り替える。 | `カメラ：Rack focus。手前の雨粒がついた窓ガラスに合っていたピントが、ゆっくりと奥の通りを歩く人物へと移動して鮮明になる。` |
@@ -159,11 +159,11 @@
 - **日本の現場略号（WS＝ウエストショット、BS、US、FF、D）はプロンプトに書きません。** `WS` は英語では Wide Shot（引き）で意味が反転します。詳細は [shot-composition.md](shot-composition.md) の対応表を参照。
 
 ### 2. 時間指定（秒数）とカメラワークの接続
-複数秒にわたるショットの場合、時間ごとにカメラの動きを定義します。実撮影と同じく **「静 → 動 → 静」の三段構成**にすると安定します。
+複数秒にわたるショットの場合、時間ごとにカメラの動きを定義します。実撮影と同じく **「静 → 動 → 静」の三段構成**にすると読み取りやすくなります（モデル側の安定性は未確認）。
 
-- `0〜2秒: Static camera（固定）で人物の静止した表情を捉える。`
-- `2〜8秒: Slow dolly in（ゆっくり前進）を開始し、人物の瞳のアップへ寄る。`
-- `8〜10秒: Rack focusで背景のドアを開ける人物へピントを送り、動きを止める。`
+- `0〜3秒: Static camera（固定）で人物の静止した表情を捉える。`
+- `3〜7秒: Slow dolly in（ゆっくり前進）を開始し、人物の瞳のアップへ寄る。`
+- `7〜10秒: Rack focusで背景のドアを開ける人物へピントを送り、動きを止める。`
 
 整数秒・隙間なし・1区間3秒以上といった時間指定の制約は [prompt-syntax.md](prompt-syntax.md) を参照してください。
 
@@ -173,5 +173,5 @@
 - **矛盾する指示を重ねない**: `handheld`（手持ち）と `locked steady`（固定）を同時に指定しません。
 - **速度語を省かない**: `slowly` / `smoothly` / `gradually` を添えます。原則は「ゆっくり」。
 - **揺れは弱く限定する**: `shaky` や `violent handheld` を強く指定すると被写体の形状が崩れます。`subtle handheld, natural micro-movement` のように量を限定します。
-- **ワンカット（連続撮影）とカット割り（シーン切り替え）の混同**: ワンカットを意図する場合は **`one-take shot`**（公式が解釈する語彙）と明記し、`continuous shot` / `no cuts` を添えてカットが自動挿入されないよう制約します。
+- **ワンカット（連続撮影）とカット割り（シーン切り替え）の混同**: ワンカットを意図する場合は **`one-take shot`**（モデルが解釈する語彙として挙げられている／確度【第三者】）と明記し、`continuous shot` / `no cuts` を添えてカットが自動挿入されないよう制約します。
 - **複数ショットを出すとき**: 隣接ショットのサイズと角度を変え、人物の外見・画面上の左右の立ち位置・光源の方向を各ショットで反復します。詳細は [multi-shot-continuity.md](multi-shot-continuity.md) を参照。

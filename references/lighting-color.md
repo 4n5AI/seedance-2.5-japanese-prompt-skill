@@ -54,9 +54,9 @@ subtle rim light separating the subject from the dark background
 
 | 日本語名 | 英語プロンプト表記 | 目安 | 効果・印象 | 使い所 |
 |---|---|---|---|---|
-| ゴールデンアワー | `golden hour` | 太陽高度が概ね +6°〜0°、日の出・日没前後 | 暖色、エモーショナル、映画的 | 恋愛、回想 |
-| マジックアワー | `magic hour` | 太陽高度が概ね +6°〜−6°、日の出入り前後それぞれ約40分 | ゴールデンとブルーの両方を含む総称 | 移り変わりの表現 |
-| ブルーアワー | `blue hour` | 日没後・夜明け前の約30分 | 静けさ、切なさ、幻想的 | 別れ、余韻、独白 |
+| ゴールデンアワー | `golden hour` | 太陽高度が概ね +6°〜−4°、日の出・日没前後 | 暖色、エモーショナル、映画的 | 恋愛、回想 |
+| マジックアワー | `magic hour` | 太陽高度が概ね +6°〜−6°。ゴールデンとブルーの両方を含む総称 | 移り変わりの表現 | 夕暮れ、夜明け |
+| ブルーアワー | `blue hour` | 太陽高度が概ね −4°〜−6°、日没後・夜明け前の20〜30分 | 静けさ、切なさ、幻想的 | 別れ、余韻、独白 |
 
 **色温度だけでなく、光の方向と環境との相互作用まで書くと機能しやすい。**
 
@@ -64,7 +64,7 @@ subtle rim light separating the subject from the dark background
 golden hour backlight from the right, long shadows across the floor, warm rim on the hair
 ```
 
-太陽高度と時間の目安は資料によって区分が揺れる。厳密な定義としては扱わない。
+太陽高度と時間の目安は資料によって区分が揺れる。厳密な定義としては扱わない。時間の長さは緯度と季節で変わる。
 
 ---
 
@@ -73,12 +73,13 @@ golden hour backlight from the right, long shadows across the floor, warm rim on
 | 光源 | 英語 | ケルビン |
 |---|---|---|
 | ローソクの炎 | `candlelight` | 1,000〜2,000K |
-| タングステン・白熱 | `tungsten` | 約3,200K |
-| 蛍光灯 | `fluorescent` | 4,000〜5,000K |
+| 白熱電球（家庭用） | `warm incandescent` | 約2,700〜2,900K |
+| タングステン（撮影用） | `tungsten` | 約3,200K |
+| 蛍光灯 | `fluorescent` | 約3,000〜6,500K（電球色〜昼光色で幅がある） |
 | 昼光・晴天の真昼 | `daylight` | 約5,600K |
 | 曇天 | `overcast` | 6,500K以上 |
 
-数値が低いほど暖色（赤・オレンジ寄り）、高いほど寒色（青寄り）。**混色を書くと画面が一気に映画的になる**（窓から入る青い昼光と、室内のタングステンの暖色を同じ画面に置く、など）。
+数値が低いほど暖色（赤・オレンジ寄り）、高いほど寒色（青寄り）。**混色は画面の映画的な印象に効くとされる**（窓から入る青い昼光と、室内のタングステンの暖色を同じ画面に置く、など）。
 
 ケルビン値そのものがモデルに効くかは未確認。`warm tungsten interior against cool blue daylight from the window` のように**見え方の言葉で書く。**
 
