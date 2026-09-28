@@ -1,6 +1,6 @@
 # Seedance 2.5 Japanese Prompt Skill
 
-Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**シネマトグラフィー（カメラワーク・ショットサイズ・レンズ・構図・ライティング）のリファレンス**を収録しています。
+Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**シネマトグラフィー（カメラワーク・ショットサイズ・レンズ・構図・ライティング）のリファレンス**、**色・エフェクト・編集・ジャンルのルックまで含む424種の映像技法辞典**を収録しています。
 
 [Agent Skills](https://agentskills.io) 標準の `SKILL.md` 形式で書かれており、**OpenAI Codex、Claude Code、Google Antigravity、Gemini CLI、Cursor、GitHub Copilot、OpenCode** など、この形式に対応する生成AIエージェントで共通に使えます。特定のエージェント専用の記述は `SKILL.md` に含めていません。
 
@@ -28,6 +28,7 @@ Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳�
 | [`lighting-color.md`](references/lighting-color.md) | 三点照明とライティングパターン、光の質、時間帯、色温度、カラーグレード |
 | [`multi-shot-continuity.md`](references/multi-shot-continuity.md) | 複数ショットの連続性、編集文法、絵コンテとの対応 |
 | [`prompt-syntax.md`](references/prompt-syntax.md) | Seedance 2.5固有の記法（音声・字幕の括弧、時間指定の制約、参照素材の束縛） |
+| [`techniques/`](references/techniques/index.md) | 映像技法辞典424種（カメラの動き・ショット・アングル・構図・照明・レンズ・色・大気・時間・エフェクト・編集・ジャンル・トレンドのルック）。英語名や日本語の呼び名から、説明とプロンプトの記述例を引く |
 
 ### 3. 日本語の現場用語を国際標準の英語へ変換
 
@@ -176,6 +177,7 @@ Skill本文はインストール先の skills/seedance-25/SKILL.md にある。
 - [`references/lens-and-focus.md`](references/lens-and-focus.md)：焦点距離と画角、被写界深度、レンズのルック
 - [`references/lighting-color.md`](references/lighting-color.md)：ライティング、時間帯、色温度、カラーグレード
 - [`references/multi-shot-continuity.md`](references/multi-shot-continuity.md)：複数ショットの連続性、編集文法、絵コンテとの対応
+- [`references/techniques/`](references/techniques/index.md)：映像技法辞典424種（13分類）。索引の `index.md` から分類ごとのファイルを引く
 - [`references/source-guide.md`](references/source-guide.md)：出典、設定、モード別条件、確度の区分
 - [`agents/openai.yaml`](agents/openai.yaml)：Codex向けの表示・呼び出し設定（任意。Codex以外のエージェントは無視します）
 - [`install.sh`](install.sh)：各エージェントの skills ディレクトリへ配置するスクリプト
@@ -195,6 +197,8 @@ Seedance公式資料（確認日：**2026-09-07**、本文取得済み）。
 - [4n5AI/CinematographyStoryboards](https://github.com/4n5AI/CinematographyStoryboards)（7軸66用語の体系。リポジトリから取得済み）
 
 このほか、焦点距離・画角・シネマレンズ・カメラワーク・構図の各分野について参照先の指定がありましたが、作成環境のネットワーク制限で本文を取得できませんでした。該当分野の記述は検索結果と到達できた一次情報源（メーカーやレンタル各社の技術資料、物理の公式、公開されている用語集）から再構成しており、指定ページからの逐語ではありません。取得状況の一覧は [出典ガイド](references/source-guide.md) にあります。
+
+映像技法辞典（`references/techniques/`）の説明と記述例は、一般的な撮影・編集・映像表現の知識を基にこのリポジトリで書き下ろしたものです。Seedance 2.5 での効き目は検証していません。
 
 **確度の扱い**：Skillの各記述には確度を付けています。公式資料で本文を確認したもの、複数の第三者情報源が一致するもの、裏付けが弱いものを区別し、公式で未確認の事項をユーザーへ断定して伝えない方針です。シネマトグラフィーの知識は一般的な撮影知識であり、Seedanceの公式資料には含まれません。「どの語彙がAI動画モデルに効くか」の記述は第三者の検証報告に基づき、その多くは他モデルでの検証です。
 
