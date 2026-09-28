@@ -1,6 +1,6 @@
 ---
 name: seedance-25
-description: "Seedance 2.5（シーダンス2.5／Seedance2.5／SD2.5）の動画プロンプトを作成・修正・翻訳・短縮するときに必ず毎回使う。会話の続き、リップシンク用セリフ、参照素材、時間指定、長尺・延長・部分編集のプロンプトも対象。DreaminaとByteDanceの公式資料に加え、カメラワーク・ショットサイズ・レンズと焦点距離・構図・ライティングのシネマトグラフィー知識と、色・エフェクト・編集・ジャンルのルックまで含む424種の映像技法辞典を基に構成し、日本語セリフの難しい漢字はひらがな、数字は算用数字、英語はカタカナに整える。明示されたSeedance 2.0や他モデルの依頼には自動適用しない。Use this skill for every Seedance 2.5 video prompt request in Japanese (create, revise, translate, shorten, lip-sync dialogue, camera, lighting, color, effects and editing direction); not for Seedance 2.0 or other models."
+description: "Seedance 2.5（シーダンス2.5／Seedance2.5／SD2.5）の動画プロンプトを作成・修正・翻訳・短縮するときに必ず毎回使う。会話の続き、リップシンク用セリフ、参照素材、時間指定、長尺・延長・部分編集のプロンプトも対象。DreaminaとByteDanceの公式資料に加え、カメラワーク・ショットサイズ・レンズと焦点距離・構図・ライティングのシネマトグラフィー知識と、色・エフェクト・編集・ジャンルのルックまで含む400種以上の映像技法辞典を基に構成し、日本語セリフの難しい漢字はひらがな、数字は算用数字、英語はカタカナに整える。明示されたSeedance 2.0や他モデルの依頼には自動適用しない。Use this skill for every Seedance 2.5 video prompt request in Japanese (create, revise, translate, shorten, lip-sync dialogue, camera, lighting, color, effects and editing direction); not for Seedance 2.0 or other models."
 metadata:
   source_reviewed: "2026-09-08"
 ---
@@ -38,7 +38,7 @@ metadata:
 | [lens-and-focus.md](references/lens-and-focus.md) | 焦点距離と画角、被写界深度、レンズのルック |
 | [lighting-color.md](references/lighting-color.md) | 三点照明、光の質、時間帯、色温度、カラーグレード |
 | [multi-shot-continuity.md](references/multi-shot-continuity.md) | 複数ショットの連続性、編集文法、絵コンテとの対応 |
-| [techniques/index.md](references/techniques/index.md) | 映像技法辞典424種（13分類）の索引。技法名・日本語の呼び名から、分類ごとのファイルの説明と記述例を引く |
+| [techniques/index.md](references/techniques/index.md) | 映像技法辞典400種以上（13分類）の索引。技法名・日本語の呼び名から、分類ごとのファイルの説明と記述例を引く |
 | [source-guide.md](references/source-guide.md) | 出典、資料上の数値条件、モード別の書き方 |
 
 **Seedance 2.0向けの助言を2.5に適用しない。** 特に時間指定は方針が逆で、2.0は「タイムスタンプを付けない」、2.5は秒単位の区間指定に対応する。

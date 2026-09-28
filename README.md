@@ -1,6 +1,6 @@
 # Seedance 2.5 Japanese Prompt Skill
 
-Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**シネマトグラフィー（カメラワーク・ショットサイズ・レンズ・構図・ライティング）のリファレンス**、**色・エフェクト・編集・ジャンルのルックまで含む424種の映像技法辞典**を収録しています。
+Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳・短縮するためのSkillです。参照素材、時間ごとの演出、カメラワーク、音声を整理し、そのまま貼り付けて使えるプロンプトを作成します。特に、**日本語リップシンク用セリフの表記最適化（難読漢字・数字・英語）**と、**シネマトグラフィー（カメラワーク・ショットサイズ・レンズ・構図・ライティング）のリファレンス**、**色・エフェクト・編集・ジャンルのルックまで含む400種以上の映像技法辞典**を収録しています。
 
 [Agent Skills](https://agentskills.io) 標準の `SKILL.md` 形式で書かれており、**OpenAI Codex、Claude Code、Google Antigravity、Gemini CLI、Cursor、GitHub Copilot、OpenCode** など、この形式に対応する生成AIエージェントで共通に使えます。特定のエージェント専用の記述は `SKILL.md` に含めていません。
 
@@ -28,7 +28,7 @@ Seedance 2.5の動画プロンプトを、日本語で作成・修正・翻訳�
 | [`lighting-color.md`](references/lighting-color.md) | 三点照明とライティングパターン、光の質、時間帯、色温度、カラーグレード |
 | [`multi-shot-continuity.md`](references/multi-shot-continuity.md) | 複数ショットの連続性、編集文法、絵コンテとの対応 |
 | [`prompt-syntax.md`](references/prompt-syntax.md) | Seedance 2.5固有の記法（音声・字幕の括弧、時間指定の制約、参照素材の束縛） |
-| [`techniques/`](references/techniques/index.md) | 映像技法辞典424種（カメラの動き・ショット・アングル・構図・照明・レンズ・色・大気・時間・エフェクト・編集・ジャンル・トレンドのルック）。英語名や日本語の呼び名から、説明とプロンプトの記述例を引く |
+| [`techniques/`](references/techniques/index.md) | 映像技法辞典400種以上（カメラの動き・ショット・アングル・構図・照明・レンズ・色・大気・時間・エフェクト・編集・ジャンル・トレンドのルック）。英語名や日本語の呼び名から、説明とプロンプトの記述例を引く |
 
 ### 3. 日本語の現場用語を国際標準の英語へ変換
 
@@ -177,7 +177,7 @@ Skill本文はインストール先の skills/seedance-25/SKILL.md にある。
 - [`references/lens-and-focus.md`](references/lens-and-focus.md)：焦点距離と画角、被写界深度、レンズのルック
 - [`references/lighting-color.md`](references/lighting-color.md)：ライティング、時間帯、色温度、カラーグレード
 - [`references/multi-shot-continuity.md`](references/multi-shot-continuity.md)：複数ショットの連続性、編集文法、絵コンテとの対応
-- [`references/techniques/`](references/techniques/index.md)：映像技法辞典424種（13分類）。索引の `index.md` から分類ごとのファイルを引く
+- [`references/techniques/`](references/techniques/index.md)：映像技法辞典400種以上（13分類）。索引の `index.md` から分類ごとのファイルを引く
 - [`references/source-guide.md`](references/source-guide.md)：出典、設定、モード別条件、確度の区分
 - [`agents/openai.yaml`](agents/openai.yaml)：Codex向けの表示・呼び出し設定（任意。Codex以外のエージェントは無視します）
 - [`install.sh`](install.sh)：各エージェントの skills ディレクトリへ配置するスクリプト
