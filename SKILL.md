@@ -1,6 +1,6 @@
 ---
 name: seedance-25
-description: "Seedance 2.5（シーダンス2.5／Seedance2.5／SD2.5）の動画プロンプトを作成・修正・翻訳・短縮するときに必ず毎回使う。会話の続き、リップシンク用セリフ、参照素材、時間指定、長尺・延長・部分編集のプロンプトも対象。DreaminaとByteDanceの公式資料に加え、カメラワーク・ショットサイズ・レンズと焦点距離・構図・ライティングのシネマトグラフィー知識を基に構成し、日本語セリフの難しい漢字はひらがな、数字は算用数字、英語はカタカナに整える。明示されたSeedance 2.0や他モデルの依頼には自動適用しない。Use this skill for every Seedance 2.5 video prompt request in Japanese (create, revise, translate, shorten, lip-sync dialogue, camera and lighting direction); not for Seedance 2.0 or other models."
+description: "Seedance 2.5（シーダンス2.5／Seedance2.5／SD2.5）の動画プロンプトを作成・修正・翻訳・短縮するときに必ず毎回使う。会話の続き、リップシンク用セリフ、参照素材、時間指定、長尺・延長・部分編集のプロンプトも対象。DreaminaとByteDanceの公式資料に加え、カメラワーク・ショットサイズ・レンズと焦点距離・構図・ライティングのシネマトグラフィー知識と、色・エフェクト・編集・ジャンルのルックまで含む424種の映像技法辞典を基に構成し、日本語セリフの難しい漢字はひらがな、数字は算用数字、英語はカタカナに整える。明示されたSeedance 2.0や他モデルの依頼には自動適用しない。Use this skill for every Seedance 2.5 video prompt request in Japanese (create, revise, translate, shorten, lip-sync dialogue, camera, lighting, color, effects and editing direction); not for Seedance 2.0 or other models."
 metadata:
   source_reviewed: "2026-09-08"
 ---
@@ -27,6 +27,7 @@ metadata:
 - 下記の組み立てを使い、短い単一ショットなら数文、複数ショットなら時間帯ごとに書く。ユーザーが指定した尺を30秒へ勝手に変更しない。
 - 素材は実際のアップロード順・表示タグに対応させ、顔、商品、動き、カメラ、声、背景など何を参照するかを定義する。**どの素材が何を制御するかを文中で明示する**（`@Image1 は主役の外見を定義する。@Video1 は動きを定義する。`）。役割を宣言せずに素材を並べない。未提供の素材を存在するものとして書かない。素材なしでも文章だけで成立するプロンプトを作る。
 - 撮影を指示する際は下表の参照ファイルを読み、**映画用語（英語）＋日本語補足**のハイブリッド形式で記述する。ユーザーが「トラックアップ」「ズームアップ」などの日本の現場語や、`WS`・`BS` のような日本の略号を使った場合は、対応表で国際標準の英語へ変換してから書く。
+- ユーザーが技法名・ルック名・エフェクト名を挙げたとき、または演出の選択肢を示すときは、[techniques/index.md](references/techniques/index.md) から該当する分類のファイルだけを読む。名前付きのルックやプリセット名は名前に頼らず、光・色・動き・質感の要素に分解して書く。
 - 数値設定・長尺・延長・編集・素材制限を扱う場合は [source-guide.md](references/source-guide.md) の該当項目を読む。料金、API項目、利用可能モードなど変わり得る事実を断定する前には、対象サービスの現行公式情報または実際の画面を確認する。確認できない環境では、未確認である旨を短く添える。プロンプト内の演出指定と、UI/APIで実際に選ぶ設定を分ける。
 
 | 参照ファイル | 内容 |
@@ -37,6 +38,7 @@ metadata:
 | [lens-and-focus.md](references/lens-and-focus.md) | 焦点距離と画角、被写界深度、レンズのルック |
 | [lighting-color.md](references/lighting-color.md) | 三点照明、光の質、時間帯、色温度、カラーグレード |
 | [multi-shot-continuity.md](references/multi-shot-continuity.md) | 複数ショットの連続性、編集文法、絵コンテとの対応 |
+| [techniques/index.md](references/techniques/index.md) | 映像技法辞典424種（13分類）の索引。技法名・日本語の呼び名から、分類ごとのファイルの説明と記述例を引く |
 | [source-guide.md](references/source-guide.md) | 出典、資料上の数値条件、モード別の書き方 |
 
 **Seedance 2.0向けの助言を2.5に適用しない。** 特に時間指定は方針が逆で、2.0は「タイムスタンプを付けない」、2.5は秒単位の区間指定に対応する。
@@ -51,8 +53,8 @@ metadata:
 | 主役 | 人物・商品の識別特徴、維持する衣装や形状 |
 | 動作 | 始まりと終わりが見える具体的な動き |
 | 環境 | 場所、時刻、天候、空間関係 |
-| カメラ | ショットサイズ・アングルと高さ・主な移動・レンズと被写界深度（[shot-composition.md](references/shot-composition.md)、[camera-movements.md](references/camera-movements.md)、[lens-and-focus.md](references/lens-and-focus.md)） |
-| 見た目 | 光源と光の質、時間帯、色調・グレード、材質、写実／アニメなど（[lighting-color.md](references/lighting-color.md)） |
+| カメラ | ショットサイズ・アングルと高さ・主な移動・レンズと被写界深度（[shot-composition.md](references/shot-composition.md)、[camera-movements.md](references/camera-movements.md)、[lens-and-focus.md](references/lens-and-focus.md)、技法名は [techniques/index.md](references/techniques/index.md)） |
+| 見た目 | 光源と光の質、時間帯、色調・グレード、材質、エフェクト、写実／アニメなど（[lighting-color.md](references/lighting-color.md)、ルック・エフェクトは [techniques/index.md](references/techniques/index.md)） |
 | 時間 | 各動作・ショットの区間と切り替え |
 | 音・制約 | 発話者、セリフ（3規則適用）、環境音・効果音・音楽、維持／除外する要素 |
 
@@ -128,4 +130,4 @@ metadata:
 
 この例は書式の説明であり、依頼ごとに新しく書く。括弧記法は任意なので、ユーザーが平文を望む場合は使わない。
 
-根拠とモード別条件は [source-guide.md](references/source-guide.md)、Seedance 2.5固有の記法は [prompt-syntax.md](references/prompt-syntax.md)、撮影の語彙は [camera-movements.md](references/camera-movements.md)・[shot-composition.md](references/shot-composition.md)・[lens-and-focus.md](references/lens-and-focus.md)・[lighting-color.md](references/lighting-color.md)・[multi-shot-continuity.md](references/multi-shot-continuity.md) に保存してある。元ページの長文例・広告文の転載はせず、必要な指針を使って依頼ごとに新しく書く。
+根拠とモード別条件は [source-guide.md](references/source-guide.md)、Seedance 2.5固有の記法は [prompt-syntax.md](references/prompt-syntax.md)、撮影の語彙は [camera-movements.md](references/camera-movements.md)・[shot-composition.md](references/shot-composition.md)・[lens-and-focus.md](references/lens-and-focus.md)・[lighting-color.md](references/lighting-color.md)・[multi-shot-continuity.md](references/multi-shot-continuity.md)、技法名からの逆引きは [techniques/index.md](references/techniques/index.md) に保存してある。元ページの長文例・広告文の転載はせず、必要な指針を使って依頼ごとに新しく書く。
